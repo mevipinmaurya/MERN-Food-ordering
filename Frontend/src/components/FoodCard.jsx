@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const FoodCard = ({ name, image, price, category, description, id }) => {
     return (
@@ -20,7 +20,7 @@ const FoodCard = ({ name, image, price, category, description, id }) => {
                     <p>{description}</p>
                     <div className="flex justify-between items-center">
                         <p className='font-semibold text-lg text-orange-600'>${price}</p>
-                        <Link to={`/item/${id}`} className="flex justify-center items-center w-10 h-10 rounded-full cursor-pointer text-2xl hover:scale-110 bg-orange-600 text-white hover:bg-orange-700">+</Link>
+                        <Link to={`/item/${id}`} onClick={window.scrollTo(0, 0)} className="flex justify-center items-center w-10 h-10 rounded-full cursor-pointer text-2xl hover:scale-110 bg-orange-600 text-white hover:bg-orange-700">+</Link>
                     </div>
                 </div>
             </div>

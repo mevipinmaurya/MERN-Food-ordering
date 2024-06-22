@@ -3,7 +3,7 @@ import header_img from "../assets/header_img.png"
 
 const Hero = () => {
     return (
-        <div className='w-full h-screen mt-5 flex justify-center'>
+        <div className='w-full h-auto mt-5 flex justify-center'>
             <div className="w-[90%]">
                 <div className='w-full h-[520px] rounded-3xl bg-no-repeat bg-cover bg-center relative bg-blend-overlay bg-black/40' style={{ backgroundImage: `url(${header_img})` }}>
                     <div className='w-full h-full flex items-center rounded-lg text-left float-left justify-center md:items-center md:text-center flex-col absolute'>

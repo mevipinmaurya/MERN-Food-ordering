@@ -7,8 +7,8 @@ import Mobile from './pages/Mobile'
 import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import LoginSignup from './pages/LoginSignup'
-import FoodList from './components/FoodList'
 import Footer from './components/Footer'
+import Items from './pages/Items'
 
 const App = () => {
   return (
@@ -20,8 +20,8 @@ const App = () => {
         <Route path='/mobile' element={<Mobile />} />
         <Route path='/contact' element={<Contact />} />
 
-        <Route path='/item' element={<FoodList />}>
-          <Route path=':itemid' element={<FoodList />} />
+        <Route path='/item' element={<Items />}>
+          <Route path=':itemid' element={<Items />} />
         </Route>
 
         <Route path='/cart' element={<Cart />} />
