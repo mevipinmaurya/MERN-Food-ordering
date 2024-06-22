@@ -13,7 +13,7 @@ const Navbar = () => {
             <div className='w-[90%]'>
                 <div className="navbar bg-base-100 p-3">
                     <div className="flex-1">
-                        <img className='w-[160px] h-[25px]' src={logo} alt="" />
+                        <Link to={"/"}><img className='w-[140px] md:w-[160px] h-[25px]' src={logo} alt="" /></Link>
                     </div>
                     <div className='md:hidden mr-3 block'>
                         <div className='text-3xl cursor-pointer'><MdOutlineRestaurantMenu /></div>

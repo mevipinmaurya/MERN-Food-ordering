@@ -8,6 +8,7 @@ import Contact from './pages/Contact'
 import Cart from './pages/Cart'
 import LoginSignup from './pages/LoginSignup'
 import FoodList from './components/FoodList'
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<LoginSignup />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

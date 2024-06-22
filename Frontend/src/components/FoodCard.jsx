@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 const FoodCard = ({ name, image, price, category, description, id }) => {
     return (
         <div>
-            <div className="card card-compact w-64 bg-base-100 shadow-xl">
+            <div className="card card-compact w-64 bg-base-100 border-[1px]">
                 <figure><img className='hover:scale-110' src={image} alt="food_image" /></figure>
                 <div className="card-body">
                     <div className='flex justify-between items-center'>
