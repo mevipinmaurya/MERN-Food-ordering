@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
             <hr />
-            <div className='w-full flex justify-center items-center mb-10'>
+            <div className='w-full flex justify-center items-center bg-slate-100'>
                 <div className='w-[90%]'>
                     <div>
                         <footer className="footer footer-center p-10 ">

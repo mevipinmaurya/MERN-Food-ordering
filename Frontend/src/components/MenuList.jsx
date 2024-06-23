@@ -1,8 +1,11 @@
-import React from 'react'
-import { menu_list } from '../assets/assets.js'
+import React, { useContext } from 'react'
+// import { menu_list } from '../assets/assets.js'
 import MenuCategory from './MenuCategory.jsx';
+import { FoodContext } from '../context/FoodContext.jsx';
 
 const MenuList = () => {
+
+    const {menu_list} = useContext(FoodContext)
 
     return (
         <div className='w-full flex justify-center items-center mb-20 mt-10'>

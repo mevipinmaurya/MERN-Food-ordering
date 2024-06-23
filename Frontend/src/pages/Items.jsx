@@ -1,8 +1,10 @@
-import React from 'react'
-import { food_list } from '../assets/assets'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import FoodItemDisplay from '../components/FoodItemDisplay';
+import { FoodContext } from '../context/FoodContext';
 const Items = () => {
+
+    const { food_list } = useContext(FoodContext)
 
     const itemid = useParams();
     // console.log(itemid)

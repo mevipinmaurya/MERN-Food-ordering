@@ -1,8 +1,11 @@
-import React from 'react'
-import { food_list } from '../assets/assets'
+import React, { useContext } from 'react'
 import FoodCard from './FoodCard'
+import { FoodContext } from '../context/FoodContext'
 
 const FoodList = () => {
+
+    const {food_list} = useContext(FoodContext)
+
     return (
         <>
             <div className='w-full flex justify-center items-center mb-10'>

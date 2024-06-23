@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
-import { food_list } from '../assets/assets';
 import FoodCard from './FoodCard.jsx';
+import { FoodContext } from '../context/FoodContext.jsx';
 
 const FoodItemDisplay = ({ foodItem }) => {
+    const {food_list} = useContext(FoodContext)
 
     return (
         <div className='w-full flex justify-center items-center mt-14 mb-20'>
