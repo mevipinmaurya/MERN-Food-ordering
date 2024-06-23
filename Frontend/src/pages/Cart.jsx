@@ -1,7 +1,12 @@
-import React from 'react'
-import { IoIosRemoveCircle } from "react-icons/io";
+import React, { useContext } from 'react'
+import CartItemDisplay from '../components/CartItemDisplay';
+import { FoodContext } from '../context/FoodContext';
 
 const Cart = () => {
+
+  const { food_list, cartItems, getTotalCartAmount } = useContext(FoodContext);
+  const deliveryFee = 5;
+
   return (
     <div className='w-full flex justify-center items-center mb-20 mt-10'>
       <div className='w-[90%]'>
@@ -19,100 +24,30 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Greek Salad
-                </td>
-                <th>
-                  <p>$12</p>
-                </th>
-                <td><p className='w-10 flex items-center justify-center rounded-md py-2 px-2 border-[1px]'>2</p></td>
-                <th>
-                  <p>$24</p>
-                </th>
-                <th>
-                  <p className='text-2xl text-orange-700 cursor-pointer'><IoIosRemoveCircle /></p>
-                </th>
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Greek Salad
-                </td>
-                <th>
-                  <p>$12</p>
-                </th>
-                <td><p className='w-10 flex items-center justify-center rounded-md py-2 px-2 border-[1px]'>2</p></td>
-                <th>
-                  <p>$24</p>
-                </th>
-                <th>
-                  <p className='text-2xl text-orange-700 cursor-pointer'><IoIosRemoveCircle /></p>
-                </th>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  Greek Salad
-                </td>
-                <th>
-                  <p>$12</p>
-                </th>
-                <td><p className='w-10 flex items-center justify-center rounded-md py-2 px-2 border-[1px]'>2</p></td>
-                <th>
-                  <p>$24</p>
-                </th>
-                <th>
-                  <p className='text-2xl text-orange-700 cursor-pointer'><IoIosRemoveCircle /></p>
-                </th>
-              </tr>
+              {
+                food_list.map((e) => (
+                  cartItems[e._id] > 0 && <CartItemDisplay key={e._id} image={e.image} title={e.name} price={e.price} qty={cartItems[e._id]} id={e._id} />
+                ))
+              }
             </tbody>
           </table>
         </div>
 
-        <div className='flex mt-16 justify-between p-3 flex-col gap-10 md:flex-row'>  
-          
+        <div className='flex mt-16 justify-between p-3 flex-col gap-10 md:flex-row'>
+
           <div className='flex w-[90%] md:w-[40%] flex-col gap-3'>
             <h1 className='text-2xl font-semibold'>Cart Totals</h1>
             <div className='flex border-b-[1px] justify-between items-center mt-4'>
               <h1 className='text-lg'>Subtotal</h1>
-              <h1 className='text-lg'>$24</h1>
+              <h1 className='text-lg'>${getTotalCartAmount()}</h1>
             </div>
             <div className='flex border-b-[1px] justify-between items-center'>
               <h1 className='text-lg'>Delivery Fee</h1>
-              <h1 className='text-lg'>$5</h1>
+              <h1 className='text-lg'>${getTotalCartAmount() ? deliveryFee : 0}</h1>
             </div>
             <div className='flex border-b-[1px] justify-between items-center'>
               <h1 className='text-lg font-semibold'>Total</h1>
-              <h1 className='text-lg font-semibold'>$29</h1>
+              <h1 className='text-lg font-semibold'>${getTotalCartAmount() ? getTotalCartAmount() + deliveryFee : 0}</h1>
             </div>
             <div className='mt-7'>
               <button className='btn bg-orange-600 hover:bg-orange-700 text-white pl-4 pr-4'>PROCEED TO CHECKOUT</button>
