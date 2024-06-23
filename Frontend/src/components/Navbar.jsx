@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { TiUserAdd } from "react-icons/ti";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { FoodContext } from '../context/FoodContext';
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Navbar = () => {
 
@@ -24,7 +25,8 @@ const Navbar = () => {
                     <div className='hidden mr-5 md:block'>
                         <ul className='flex text-md md:text-lg lg:text-lg gap-6'>
                             <Link onClick={() => setMenuStyle("/")} to={"/"} className='hover:cursor-pointer'>Home {menuStyle === "/" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
-                            <Link onClick={() => setMenuStyle("menu")} to={"/menu"} className='hover:cursor-pointer'>Menu {menuStyle === "menu" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
+                            {/* <Link onClick={() => setMenuStyle("menu")} to={"#explore-menu"} className='hover:cursor-pointer'>Menu {menuStyle === "menu" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link> */}
+                            <AnchorLink onClick={() => setMenuStyle("menu")} href="#explore-menu" className='hover:cursor-pointer'>Menu {menuStyle === "menu" && <hr className='h-[3px] w-8 bg-orange-600' />}</AnchorLink>
                             <Link onClick={() => setMenuStyle("mobile")} to={"/mobile"} className='hover:cursor-pointer'>Mobile app {menuStyle === "mobile" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
                             <Link onClick={() => setMenuStyle("contact")} to={"/contact"} className='hover:cursor-pointer'>Contact us {menuStyle === "contact" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
                         </ul>

@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import CartItemDisplay from '../components/CartItemDisplay';
 import { FoodContext } from '../context/FoodContext';
+import { useNavigate } from "react-router-dom"
 
 const Cart = () => {
 
   const { food_list, cartItems, getTotalCartAmount } = useContext(FoodContext);
   const deliveryFee = 5;
+
+  const navigate = useNavigate();
 
   return (
     <div className='w-full flex justify-center items-center mb-20 mt-10'>
@@ -50,7 +53,7 @@ const Cart = () => {
               <h1 className='text-lg font-semibold'>${getTotalCartAmount() ? getTotalCartAmount() + deliveryFee : 0}</h1>
             </div>
             <div className='mt-7'>
-              <button className='btn bg-orange-600 hover:bg-orange-700 text-white pl-4 pr-4'>PROCEED TO CHECKOUT</button>
+              <button onClick={() => navigate("/order")} className='btn bg-orange-600 hover:bg-orange-700 text-white pl-4 pr-4'>PROCEED TO CHECKOUT</button>
             </div>
           </div>
 

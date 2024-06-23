@@ -8,7 +8,7 @@ const MenuList = () => {
     const {menu_list} = useContext(FoodContext)
 
     return (
-        <div className='w-full flex justify-center items-center mb-20 mt-10'>
+        <div id='explore-menu' className='w-full flex justify-center items-center mb-20 mt-10'>
             <div className='w-[90%]'>
                 <div className='mb-10'>
                     <h2 className='text-2xl text-black font-semibold'>Explore our menu</h2>

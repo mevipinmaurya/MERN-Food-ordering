@@ -9,6 +9,7 @@ import Cart from './pages/Cart'
 import LoginSignup from './pages/LoginSignup'
 import Footer from './components/Footer'
 import Items from './pages/Items'
+import PlaceOrder from './pages/PlaceOrder'
 
 const App = () => {
   return (
@@ -16,13 +17,13 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/menu' element={<Menu />} />
         <Route path='/mobile' element={<Mobile />} />
         <Route path='/contact' element={<Contact />} />
 
         <Route path='/item' element={<Items />}>
           <Route path=':itemid' element={<Items />} />
         </Route>
+        <Route path='/order' element={<PlaceOrder />} />
 
         <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<LoginSignup />} />
