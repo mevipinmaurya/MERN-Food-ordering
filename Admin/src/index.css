@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+  font-family: "Outfit", sans-serif;
+}
+
+/* For admin panel (When we use navlink for routing it will add active className automatically whenever we click on any menu */
+.active{
+  background: #fff0ed;
+  border: 1px solid tomato;
+}
