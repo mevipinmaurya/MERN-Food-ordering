@@ -4,7 +4,7 @@ import { FoodContext } from '../context/FoodContext';
 
 const CartItemDisplay = ({ image, title, price, qty, id }) => {
 
-    const {removeFromCart} = useContext(FoodContext)
+    const { removeFromCart } = useContext(FoodContext)
 
     return (
         <>
@@ -13,7 +13,7 @@ const CartItemDisplay = ({ image, title, price, qty, id }) => {
                     <div className="flex items-center gap-3">
                         <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                                <img src={image} alt="Avatar Tailwind CSS Component" />
+                                <img src={`http://localhost:3000/images/` + image} alt="Avatar Tailwind CSS Component" />
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@ const CartItemDisplay = ({ image, title, price, qty, id }) => {
                     <p>${qty * price}</p>
                 </th>
                 <th>
-                    <p onClick={()=>removeFromCart(id)} className='text-2xl text-orange-700 cursor-pointer'><IoIosRemoveCircle /></p>
+                    <p onClick={() => removeFromCart(id)} className='text-2xl text-orange-700 cursor-pointer'><IoIosRemoveCircle /></p>
                 </th>
             </tr>
         </>

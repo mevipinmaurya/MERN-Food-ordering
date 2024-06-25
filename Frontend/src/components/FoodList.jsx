@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import FoodCard from './FoodCard'
 import { FoodContext } from '../context/FoodContext'
 
 const FoodList = () => {
 
-    const {food_list} = useContext(FoodContext)
+    const {foodList} = useContext(FoodContext)
+    // console.log(foodList)
+
 
     return (
         <>
@@ -14,7 +16,7 @@ const FoodList = () => {
                         <h2 className='text-2xl text-black font-semibold'>Our top dishes</h2>
                     </div>
                     <div className="w-full flex justify-evenly items-center flex-wrap gap-3">
-                        {food_list.map((item, i) => (
+                        {foodList.map((item, i) => (
                             <FoodCard key={i} id={item._id} name={item.name} image={item.image} price={item.price} description={item.description} category={item.category} />
                         ))}
                     </div>

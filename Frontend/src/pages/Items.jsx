@@ -4,12 +4,12 @@ import FoodItemDisplay from '../components/FoodItemDisplay';
 import { FoodContext } from '../context/FoodContext';
 const Items = () => {
 
-    const { food_list } = useContext(FoodContext)
+    const { foodList } = useContext(FoodContext)
 
     const itemid = useParams();
     // console.log(itemid)
-    const foodItem = food_list.find((e) => e._id === itemid.itemid)
-    // console.log(foods)
+    const foodItem = foodList.find((e) => e._id === itemid.itemid)
+    // console.log(foodItem)
 
     return (
         <>

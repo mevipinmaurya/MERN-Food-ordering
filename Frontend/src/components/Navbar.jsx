@@ -1,16 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import logo from "../assets/logo.png"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { TiUserAdd } from "react-icons/ti";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
 import { FoodContext } from '../context/FoodContext';
-import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Navbar = () => {
 
     const [menuStyle, setMenuStyle] = useState("/")
 
-    const { getTotalCartAmount, getTotalCartItems } = useContext(FoodContext)
+    const { getTotalCartAmount, getTotalCartItems, token, setToken, avatarName, setAvatarName } = useContext(FoodContext)
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("avtar");
+        setToken("");
+        setAvatarName('')
+        navigate("/")
+    }
+
 
     return (
         <div className='w-full flex justify-center items-center'>
@@ -25,8 +35,6 @@ const Navbar = () => {
                     <div className='hidden mr-5 md:block'>
                         <ul className='flex text-md md:text-lg lg:text-lg gap-6'>
                             <Link onClick={() => setMenuStyle("/")} to={"/"} className='hover:cursor-pointer'>Home {menuStyle === "/" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
-                            {/* <Link onClick={() => setMenuStyle("menu")} to={"#explore-menu"} className='hover:cursor-pointer'>Menu {menuStyle === "menu" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link> */}
-                            <AnchorLink onClick={() => setMenuStyle("menu")} href="#explore-menu" className='hover:cursor-pointer'>Menu {menuStyle === "menu" && <hr className='h-[3px] w-8 bg-orange-600' />}</AnchorLink>
                             <Link onClick={() => setMenuStyle("mobile")} to={"/mobile"} className='hover:cursor-pointer'>Mobile app {menuStyle === "mobile" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
                             <Link onClick={() => setMenuStyle("contact")} to={"/contact"} className='hover:cursor-pointer'>Contact us {menuStyle === "contact" && <hr className='h-[3px] w-8 bg-orange-600' />}</Link>
                         </ul>
@@ -50,27 +58,29 @@ const Navbar = () => {
                             </div>
                         </div>
 
-                        <div>
-                            <Link to={"/login"} onClick={() => setMenuStyle("")} className='text-3xl text-orange-600'><TiUserAdd /></Link>
-                        </div>
-
-                        {/* <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        {token
+                            ? <div className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="avatar online placeholder">
+                                        <div className="bg-orange-600 text-neutral-content w-10 rounded-full">
+                                            <span className="text-xl">{avatarName}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between">
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li><a>Orders</a></li>
+                                    <li><a onClick={() => logout()} className='text-orange-800 font-semibold bg-slate-100'>Logout</a></li>
+                                </ul>
                             </div>
-                        </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div> */}
+                            : <div>
+                                <Link to={"/login"} onClick={() => setMenuStyle("")} className='text-3xl text-orange-600'><TiUserAdd /></Link>
+                            </div>}
+
                     </div>
                 </div>
             </div>

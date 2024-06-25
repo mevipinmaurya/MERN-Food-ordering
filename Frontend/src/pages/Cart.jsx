@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 const Cart = () => {
 
-  const { food_list, cartItems, getTotalCartAmount } = useContext(FoodContext);
+  const { foodList, cartItems, getTotalCartAmount } = useContext(FoodContext);
   const deliveryFee = 5;
 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Cart = () => {
             </thead>
             <tbody>
               {
-                food_list.map((e) => (
+                foodList.map((e) => (
                   cartItems[e._id] > 0 && <CartItemDisplay key={e._id} image={e.image} title={e.name} price={e.price} qty={cartItems[e._id]} id={e._id} />
                 ))
               }
