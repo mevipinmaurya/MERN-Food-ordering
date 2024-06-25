@@ -32,29 +32,37 @@ const FoodContextProvider = ({ children }) => {
     }
 
 
-    useEffect(() => {
-        const loadData = async () => {
-            await fetchList();
-            if (localStorage.getItem("token")) {
-                setToken(localStorage.getItem("token"))
-                setAvatarName(localStorage.getItem("avtar"))
-            }
-        }
-        loadData();
-    }, [])
-
-
     // AddToCart function
-    const addToCart = (itemId) => {
-        console.log("ID of item is "+itemId)
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-        console.log(cartItems)
+    const addToCart = async (itemId) => {
+        // console.log("ID of item is " + itemId)
+        if (!cartItems[itemId]) {
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }))
+        }
+        else{
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
+        }
+        // console.log(cartItems)
+
+        if(token){
+            await axios.post(url+"/api/cart/add", {itemId}, {headers : {token}})
+        }
     }
 
     // RemoveToCart function
-    const removeFromCart = (itemId) => {
-        console.log(itemId)
+    const removeFromCart = async (itemId) => {
+        // console.log(itemId)
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
+
+        if(token){
+            await axios.post(url+"/api/cart/remove", {itemId}, {headers : {token}})
+        }
+    }
+
+
+    // Get cartData from the database
+    const loadCartData = async (token)=>{
+        const response = await axios.post(url+"/api/cart/get", {},{headers : {token}})
+        setCartItems(response.data.cartData)
     }
 
     // GetTotalCartAmount function
@@ -80,6 +88,19 @@ const FoodContextProvider = ({ children }) => {
         return totalItems;
     }
 
+
+    useEffect(() => {
+        const loadData = async () => {
+            await fetchList();
+            if (localStorage.getItem("token")) {
+                setToken(localStorage.getItem("token"))
+                setAvatarName(localStorage.getItem("avtar"))
+                await loadCartData(localStorage.getItem("token"));
+            }
+        }
+        loadData();
+    }, [])
+
     const contextValue = {
         foodList,
         menu_list,
@@ -92,7 +113,8 @@ const FoodContextProvider = ({ children }) => {
         token,
         setToken,
         avatarName,
-        setAvatarName
+        setAvatarName,
+        loadCartData
     }
 
     return (

@@ -16,9 +16,9 @@ const Navbar = () => {
     const logout = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("avtar");
-        setToken("");
         setAvatarName('')
-        navigate("/")
+        navigate("/login")
+        setToken("");
     }
 
 

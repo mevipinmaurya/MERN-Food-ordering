@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { FoodContext } from '../context/FoodContext';
 import axios from "axios"
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LoginSignup = () => {
 
   const [formState, setFormState] = useState('Login');
-  const { url, setToken, setAvatarName } = useContext(FoodContext)
+  const { url, setToken, setAvatarName, loadCartData } = useContext(FoodContext)
 
   const navigate = useNavigate();
 
@@ -46,6 +46,7 @@ const LoginSignup = () => {
         let avtar = email.slice(0, 1).toUpperCase()
         localStorage.setItem("avtar", avtar)
         setAvatarName(avtar)
+        await loadCartData(localStorage.getItem("token"))
       }
     } else {
       alert(response.data.message)
